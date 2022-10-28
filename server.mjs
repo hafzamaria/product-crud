@@ -44,7 +44,7 @@ const productModel = mongoose.model('Products', productSchema);
 const cartSchema = new mongoose.Schema({
 
     name: { type: String },
-    price: { type: Number, required: true },
+    // price: { type: Number, required: true },
     description: { type: String, required: true },
   
     code:{type:Number},
@@ -327,6 +327,25 @@ app.get("/carts", async (req, res) => {
         console.log(error)
         res.status(500).send({
             message: "failed to get  in cart"
+        });
+    }
+})
+app.delete("/cart/:id", async (req, res) => {
+
+    console.log("product deleted: ", req.body);
+
+    try {
+        let deleted = await productModel.deleteOne({ _id: req.params.id })
+        console.log("product deleted: ", deleted);
+
+        res.send({
+            message: "product deleted from cart",
+            data: deleted
+        });
+    } catch (error) {
+        console.log(error)
+        res.status(500).send({
+            message: "failed to delete product"
         });
     }
 })

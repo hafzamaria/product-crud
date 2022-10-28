@@ -166,7 +166,8 @@ function Cart() {
 //       });
 //   };
   /////editproduct//////////////
-
+  
+  
   return (
     <>
       
@@ -192,6 +193,29 @@ function Cart() {
                 <div className="price">{eachCart.Price}</div>
                 <br />
                 <div>{eachCart.code}</div>
+                <button onClick={async () => {
+                try {
+
+                    setLoading(true)
+
+                    let deleted = await
+                        axios.delete(`http://localhost:5000/cart/${eachCart?._id}`,
+                            {
+                                // withCredentials: true
+                            })
+                    console.log("deleted: ", deleted.data);
+                    setLoading(false)
+
+                    setToggleRefresh (!toggleRefresh);
+
+                } catch (e) {
+                  console.log(e)
+                    console.log("Error in api call: ", e);
+                    setLoading(false)
+                }
+
+            }}>Delete</button>
+             
             </div>
           ))}
         </div>

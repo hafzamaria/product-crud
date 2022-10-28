@@ -1,10 +1,10 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import './index.css'
+
 import { Link } from "react-router-dom";
 
 
-function Shop() {
+function Proceed() {
   const [products, setProducts] = useState([]);
   const [toggleRefresh, setToggleRefresh] = useState(true);
   const [cart , setCart]= useState(null);
@@ -19,48 +19,6 @@ function Shop() {
     getAllProducts();
   }, [toggleRefresh]);
 
-
-  /////////==============
-  const ProductPage=async () =>{
-    
-    axios.get('http://localhost:5000/carts')
-  
-  
-    .then(function (response) {
-      console.log(response.data);
-      console.log('')
-      
-     
-    })
-   
-  
-  
-      // try {
-      //     let response = await
-      //         axios.post("http://localhost:5000/cart",
-      //             // {
-      //             //     name: cart.name,
-      //             //    price: cart.price,
-      //             //     description: cart.description,
-      //             //     code: cart.code,
-      //             // },
-      //             {
-      //                 // withCredentials: true
-      //             })
-      //     console.log("cart: ", response.data);
-  
-      //     setToggleRefresh(!toggleRefresh);
-      //     setCart(null);
-  
-  
-      // } catch (e) {
-      //     console.log("Error in api call: ", e);
-  
-      // }
-
-  }
-  ProductPage();
-  ////////////============
   let cartHandler = async (e) => {
     e.preventDefault();
 
@@ -108,10 +66,10 @@ function Shop() {
     Description: <input type="text" disabled  value={cart.description} /> <br />
     Code: <input type="text"disabled   value={cart.code} /> <br />
 
-    <button type="submit"> Proceed Cart </button>
+    <button><Link to="/Cart">Proceed Cart </Link> Proceed Cart</button>
 </form>
 </div>) : null}
-  
+<p className="message" id="message"></p>
 
        <div className="result">
         <div className="map1">
@@ -121,6 +79,7 @@ function Shop() {
                 <img className="pic" width='200px' src={eachProduct.profilePicture} alt="" />
               </div>
               <div className="detail">
+
                 <p className="name1">{eachProduct.name}</p>
                 <br />
                 <div>{eachProduct.description}</div>
@@ -130,7 +89,7 @@ function Shop() {
                 <div className="price">{eachProduct.price}</div>
                 <br />
                 <div>{eachProduct.code}</div>
-                {/* <button onClick={() => {
+                <button onClick={() => {
                 setCart({
                     _id: eachProduct._id,
                     name: eachProduct?.name,
@@ -138,12 +97,10 @@ function Shop() {
                     description: eachProduct?.description,
                     code: eachProduct?.code
                 })
-            }}>Add to Cart</button> */}
+            }}>Add to Cart</button>
 
-         <div className="product">
-             <button onClick={ProductPage} ><Link to="/cart">ProductPage</Link></button>
-             </div>
-             {/* <Link to="/Page">ProductPage</Link> */}
+         
+          <p id="message"></p>
              
              </div>
             </div>
@@ -161,4 +118,5 @@ function Shop() {
     </>
   );
 }
-export default Shop;
+
+   export default Proceed;

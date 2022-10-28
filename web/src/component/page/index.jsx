@@ -19,57 +19,14 @@ function Page() {
     getAllProducts();
   }, [toggleRefresh]);
 
-  let cartHandler = async (e) => {
-    e.preventDefault();
-
-
-    try {
-        let response = await
-            axios.post("http://localhost:5000/cart",
-                {
-                    name: cart.name,
-                   price: cart.price,
-                    description: cart.description,
-                    code: cart.code,
-                },
-                {
-                    // withCredentials: true
-                })
-        console.log("cart: ", response.data);
-
-        setToggleRefresh(!toggleRefresh);
-        setCart(null);
-
-
-    } catch (e) {
-        console.log("Error in api call: ", e);
-
-    }
-
-
-}
-
-
+  
 
 
   return (
     <>
+    <h1>i am single product page</h1>
     
-    {(cart !== null) ? (< div >
-
-<h1>
-    update Cart
-</h1>
-<form onSubmit={cartHandler} >
-    Name: <input type="text" disabled  value={cart.name} /> <br />
-    Price: <input type="text"disabled  value={cart.price} /> <br />
-    Description: <input type="text" disabled  value={cart.description} /> <br />
-    Code: <input type="text"disabled   value={cart.code} /> <br />
-
-    <button type="submit"> Proceed Cart </button>
-</form>
-</div>) : null}
-  
+   
 
        <div className="result">
         <div className="map1">
@@ -85,18 +42,18 @@ function Page() {
                 <br />
              
                 <br />
-                <div className="price">{eachProduct.price}</div>
+                {/* <div className="price">{eachProduct.price}</div> */}
                 <br />
                 <div>{eachProduct.code}</div>
                 <button onClick={() => {
                 setCart({
                     _id: eachProduct._id,
                     name: eachProduct?.name,
-                    price: eachProduct?.price,
+                    // price: eachProduct?.price,
                     description: eachProduct?.description,
                     code: eachProduct?.code
                 })
-            }}><Link to="/Cart">Add to Cart</Link></button>
+            }}><Link to="/Proceed">Proceed to cart</Link></button>
 
          
           

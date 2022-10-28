@@ -7,6 +7,7 @@ import Product from "./component/product";
 import Shop from "./component/shop";
 import Cart from "./component/cart";
 import Page from "./component/page";
+import Proceed from "./component/proceed";
 
 import {
   BrowserRouter as Router,
@@ -28,7 +29,7 @@ function App() {
         <Route path="/shop" element={<Shop />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/page" element={<Page />}/>
-      
+        <Route path="/proceed" element={<Proceed />}/>
       </Routes> 
     </Router>
    
